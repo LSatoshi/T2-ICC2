@@ -11,21 +11,21 @@ typedef struct Tree {
 	node *raiz;
 }tree;
 
-tree criar(){
+tree criar(){ // aloca espaço para inicio da arvore e devolve ponteiro
 	tree T = (tree*) malloc(sizeof(tree));
 	return(T);
 }
 
-int arvore_vazia(tree *T){ 
+int arvore_vazia(tree *T){  //verifica se a arvore existe e esta vazia
 	if(T != NULL){
 		if(T->raiz == NULL) return(0);
 	}
 	return(1);
 }
 
-void inserir(tree *T, int chave, int valor){
+void inserir(tree *T, int chave, int valor){ //funcao acessada pelo usuario, insere elemento na arvore
 	if(T != NULL){
-		if(arvore_vazia(T)){
+		if(arvore_vazia(T)){//se a arvore estiver vazia, aloca espaco
 			T->raiz = (node*) malloc(sizeof(node));
 			if(T->raiz != NULL){
 				T->raiz->chave = chave;
@@ -38,20 +38,30 @@ void inserir(tree *T, int chave, int valor){
 	}
 }
 
-void inserir_no_novo(node *no, int chave, int valor){
+void inserir_no_novo(node *no, int chave, int valor){//funcao para inserir um no novo, alocando espaco
+	node *novo;
+	novo = (node*) malloc(sizeof(node));
+	if(novo != NULL){
+		novo->chave = chave;
+		novo->valor = valor;
+		novo->esq = NULL;
+		novo->dir = NULL;
+	}
+	no = *novo;
+}
 	
 
-void inserir_no(node *no, int chave, int valor){
-	if(no != NULL){
-		if(no->chave > chave){
-			if(no->esq != NULL) inserir_no(no->esq, chave, valor);
-			else 
-		}
-		if(no->chave < chave){
-			inserir_no(no->dir, chave, valor);
-		}
-		if(no->chave == chave){
-			no->valor = valor;
-		}
+void inserir_no(node *no, int chave, int valor){//funcao de apoio para inserir no na posicao correta, chamada recursivamente apenas no interior da funcoes.c
+	if(no->chave > chave){
+		if(no->esq != NULL) inserir_no(no->esq, chave, valor);
+		else inserir_no_novo(no->esq, chave, valor);
 	}
+	if(no->chave < chave){
+		if(no->esq != NULL) inserir_no(no->dir, chave, valor);
+		else inserir_no_novo(no->dir, chave, valor);
+	}
+	if(no->chave == chave){
+		no->valor = valor;
+	}
+}
 			
