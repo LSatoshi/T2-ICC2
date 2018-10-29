@@ -1,0 +1,21 @@
+\chapter{Discussões e Resultados}
+\label{chap:discussoes e resultados}
+
+A árvore de busca binária é uma estrutura de dados focada em armazenar elementos de forma ordenada afim de agilizar o máximo possivel a tarefa de busca.
+Contudo, para garantir essa melhora na eficiencia são necessários alguns pré-requisitos, além de dificultar de certa forma outras operações.
+
+O ideal para uma árvore binária é garantir um tempo de O($n\log(n)$) ou algo próximo disso, e para isso é preciso uma árvore o mais balanceada possivel, isto é,
+
+Ao inserir elementos na árvore deve-se tomar cuidado com o elemento inicial e na ordenação relativa desses, pois pode-se facilmente degenerar a estrutura da árvore para uma lista, ou algo próximo disso, acabando completamente com seu propósito.
+
+O armazenamento na árvore binária tem um custo semelhante a uma lista dinâmica encadeada, ocupando um espaço maior do que uma lista estática comum, porém com a vantagem de não ocupar espaço desnecessário e poder aumenta a lista a qualquer momento.
+
+A inserção tem um custo baixo, devido a organização com ponteiros, é necessario apenas uma atribuição após encontrar o lugar, garantindo algo próximo de O($\log(n)$, como será explicado a mais a frente.
+
+A remoção nessa estrutura, apesar de não tem um custo alto, tem uma grande complexidade e pode acabar com o balanceamento da árvore, prejudicando assim todas as outras funcionalidades.
+
+A busca na árvore pode ser realizada como se estivesse em uma lista estatica ordenada realizando uma busca binária, porém ocorre de forma ainda mais direta, devido sua organização. Por conta disso é quase sempre sempre possivel conseguir um tempo O($\log(n))$, porém, assim como todas operações, isso depende do balanceamento.
+
+Uma árvore AVL é uma árvore binária de busca balanceada, e isso implica que a diferença na altura das duas sub-árvores filhas diferir em módulo de até uma unidade. Garantindo uma árvore ser AVL, garante-se uma altura de $\log(n)$ e também um custo de O($\log(n)$) para busca inserção e remoção.
+
+Um metodo utilizado para garantir o balanceamento é um algoritmo de rotação executado conforme a necessidade após operações de remoção ou inserção. De forma superficial, existem quatro tipos de rotações, à direita ou à esquerda, e simples ou dupla, que quando executados em conjunto, literalmente rotacionam uma sub-árvore para balancea-la.
